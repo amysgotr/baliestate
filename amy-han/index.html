@@ -545,6 +545,52 @@
       font-weight: 600;
     }
 
+    /* ── Special CTA: Save Contact ── */
+    #cta-contact {
+      border-color: transparent;
+      box-shadow: 0 4px 20px rgba(47, 177, 0, 0.1);
+    }
+    
+    #cta-contact .cta-icon {
+      background: rgba(47, 177, 0, 0.08);
+      color: #2FB100;
+      border-color: rgba(47, 177, 0, 0.2);
+    }
+
+    .stroke-anim {
+      position: absolute;
+      inset: 0;
+      border-radius: 13px;
+      padding: 1.5px;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .stroke-anim::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300%;
+      height: 300%;
+      background: conic-gradient(from 0deg, transparent 0%, transparent 75%, #2FB100 85%, #88ff5c 95%, transparent 100%);
+      transform: translate(-50%, -50%) rotate(0deg);
+      animation: rotateStroke 3s linear infinite;
+    }
+
+    #cta-contact:hover .stroke-anim::before {
+      animation: rotateStroke 1.5s linear infinite;
+    }
+
+    @keyframes rotateStroke {
+      100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
     /* ── Footer ── */
     .footer {
       text-align: center;
@@ -761,6 +807,7 @@
       <!-- 5. Save Contact -->
       <li class="cta-item">
         <a href="#" class="cta-link" id="cta-contact" onclick="saveContact(event)">
+          <span class="stroke-anim"></span>
           <div class="cta-icon contact">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
               stroke-linecap="round" stroke-linejoin="round">
